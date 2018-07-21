@@ -2,12 +2,20 @@
 var http            = require('http');  // http helper
 var url             = require('url');   // URL helper
 var StringDecoder   = require("string_decoder").StringDecoder; // stream
+var Net             = require("net");
 var port            = typeof(process.env.PORT) == 'string' ? process.env.PORT.toLowerCase() : 8080; // port
 port                = Number(port)>0 ? port : 8080;
 var allowedRoots    = ["Hello","Login","User","Meow"]; // allowed handlers
 allowedRoots        = allowedRoots.map(x=>x.toLowerCase()); // to lower case for ease
 
-http.createServer(function(req, res){
+const isPortTaken = (port) => new Promise((resolve, reject) => {
+    const tester = Net.createServer()
+         .once('error', err => (err.code == 'EADDRINUSE' ? resolve(false) : reject(err)))
+         .once('listening', () => tester.once('close', () => resolve(true)).close())
+         .listen(port)
+});
+
+var s = http.createServer(function(req, res){
     /** JSON header */
     res.setHeader("Content-Type","text/json");
     /** variables */
@@ -61,6 +69,20 @@ http.createServer(function(req, res){
         result.message  = "Sorry the page is not found";
         res.end(JSON.stringify(result));
     }
-}).listen(port,()=>{
-    console.log("Loaded on port "+port);
+})
+
+isPortTaken(port).then(function(){
+    
+    s.listen(port,()=>{
+        console.log("Loaded on port "+port);
+    });
+
+}).catch(function(){
+    console.log("Port is taken");
+    console.log("Using default port 8080");
+    s.listen(8080,()=>{
+        console.log("Loaded on port "+8080);
+    });
 });
+
+
