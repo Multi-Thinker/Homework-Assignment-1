@@ -40,6 +40,8 @@ http.createServer(function(req, res){
             resp += decoder.end();
             /** if there is a GET request */
             if(MET=='GET') SER=='' ? '' : result.GET = QUR;
+            /** if there is a GET request */
+            if(MET=='POST') SER=='' ? '' : result.POST = QUR;
             /** the payload if any */
             resp=='' ?  '' : result.PayLoad = resp;
             /** URL segments >=1 */
