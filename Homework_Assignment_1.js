@@ -2,7 +2,7 @@
 var http            = require('http');  // http helper
 var url             = require('url');   // URL helper
 var StringDecoder   = require("string_decoder").StringDecoder; // stream
-var port            = typeof(process.env.NODE_ENV) == 'string' ? process.env.NODE_ENV.toLowerCase() : 8080; // port
+var port            = typeof(process.env.PORT) == 'string' ? process.env.PORT.toLowerCase() : 8080; // port
 var allowedRoots    = ["Hello","Login","User","Meow"]; // allowed handlers
 allowedRoots        = allowedRoots.map(x=>x.toLowerCase()); // to lower case for ease
 
