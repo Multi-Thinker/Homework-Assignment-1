@@ -8,3 +8,4 @@
 - added simple easy routing variable, adding indexes there can extend routes allow to make request
 - routes are not case sensitive
 - port can be changed through one global variable initiated on top
+- Change port by ```PORT=PORT_NUMBER_HERE node file.js```
