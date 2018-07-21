@@ -22,8 +22,6 @@ http.createServer(function(req, res){
 
     /** the first segment is root */
     var root     = typeof segment[0]!=="undefined" ? segment[0].toLowerCase() : '-1';
-    /** Counting segments for printing purpose */
-    var key      = 0;
     /** final result */
     var result   = {};
     /** Generating simple return response */
