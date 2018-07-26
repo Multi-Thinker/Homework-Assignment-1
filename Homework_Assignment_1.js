@@ -46,8 +46,8 @@ const loadSite      = function(req,res){
     }
 }
 var certs            = {
-    'cert': fs.readFileSync("./cert.pem"),
-    'key': fs.readFileSync('./newkey.pem')
+    'cert': fs.readFileSync("./cert.crt"),
+    'key': fs.readFileSync('./key.pem')
 };
 var ss              = https.createServer(certs,function(req,res){
     loadSite(req,res); 
