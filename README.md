@@ -10,3 +10,4 @@
 - port can be changed through one global variable initiated on top
 - Change port by ```PORT=PORT_NUMBER_HERE node file.js```
 - the default port is 8080 if the new port contains non-numeric character
+- if the port is in use, use default 8080
